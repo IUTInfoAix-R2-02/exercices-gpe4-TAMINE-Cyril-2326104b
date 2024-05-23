@@ -1,4 +1,4 @@
-package fr.amu.iut.exercice2;
+package fr.amu.iut.exercice12;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.scene.control.Button;
@@ -12,4 +12,19 @@ public class CustomButton extends Button {
         super(texte);
         this.couleur = couleur;
     }
+
+    public IntegerProperty getNbClics(){
+        return nbClics;
+    }
+
+    public void setNbClics(IntegerProperty nbClics){
+        this.nbClics=nbClics;
+    }
+
+    public String getCouleur(){
+        return couleur;
+    }
+
+
+
 }

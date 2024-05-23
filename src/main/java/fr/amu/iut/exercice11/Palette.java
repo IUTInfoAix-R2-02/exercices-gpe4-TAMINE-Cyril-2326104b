@@ -1,10 +1,7 @@
 package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.property.*;
 import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -27,9 +24,9 @@ public class Palette extends Application {
     private int nbRouge = 0;
     private int nbBleu = 0;
 
-    private IntegerProperty nbFois = new SimpleIntegerProperty();
-    private StringProperty message = new SimpleStringProperty();
-    private StringProperty couleurPanneau = new SimpleStringProperty("#000000");
+    private IntegerProperty nbFois;
+    private StringProperty message ;
+    private StringProperty couleurPanneau;
     private Label texteDuHaut;
     private Button vert;
     private Button rouge;
@@ -41,7 +38,11 @@ public class Palette extends Application {
 
     private Label texteDuBas;
 
-
+    public Palette(){
+        this.message= new SimpleStringProperty("");
+        this.nbFois = new SimpleIntegerProperty(0);
+        this.couleurPanneau= new SimpleStringProperty("#000000");
+    }
     public void handleVertClick(){
         panneau.setStyle("-fx-background-color: green");
         nbFois.set(++nbVert);
@@ -59,6 +60,16 @@ public class Palette extends Application {
         panneau.setStyle("-fx-background-color: blue");
         nbFois.set(++nbBleu);
         texteDuBas.setText("Le bleu est une jolie couleur !");
+    }
+
+    public void handleClick(String couleur, String hex){
+
+    }
+
+    private void createBindings(){
+        StringProperty texteDeBase = new SimpleStringProperty("Cliquez sur un bouton.");
+        BooleanProperty pasEncoreDeClic = new SimpleBooleanProperty(nbFois.isEqualTo(0), "Pas encore de clic.");
+
     }
 
     @Override
@@ -86,9 +97,9 @@ public class Palette extends Application {
 
        texteDuHaut.textProperty().bind(message.concat("Choisi ").concat(nbFois.asString().concat("fois")));
 
-        this.vert.setOnAction(actionEvent -> handleVertClick());
-        this.bleu.setOnAction(actionEvent -> handleBleuClick());
-        this.rouge.setOnAction(actionEvent -> handleRougeClick());
+        this.vert.setOnAction(actionEvent -> handleClick("Vert", "green"));
+        this.bleu.setOnAction(actionEvent -> handleClick("Bleu", "blue"));
+        this.rouge.setOnAction(actionEvent -> handleClick("Rouge", "red"));
 
 
         boutons.getChildren().addAll(vert, rouge, bleu);
