@@ -1,5 +1,6 @@
-package fr.amu.iut.exercice2;
+package fr.amu.iut.exercice12;
 
+import fr.amu.iut.exercice2.CustomButton;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

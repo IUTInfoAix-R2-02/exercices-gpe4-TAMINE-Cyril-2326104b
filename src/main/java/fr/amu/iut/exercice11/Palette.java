@@ -1,11 +1,17 @@
-package fr.amu.iut.exercice1;
+package fr.amu.iut.exercice11;
 
 import javafx.application.Application;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.event.Event;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -21,8 +27,10 @@ public class Palette extends Application {
     private int nbRouge = 0;
     private int nbBleu = 0;
 
+    private IntegerProperty nbFois = new SimpleIntegerProperty();
+    private StringProperty message = new SimpleStringProperty();
+    private StringProperty couleurPanneau = new SimpleStringProperty("#000000");
     private Label texteDuHaut;
-
     private Button vert;
     private Button rouge;
     private Button bleu;
@@ -33,6 +41,25 @@ public class Palette extends Application {
 
     private Label texteDuBas;
 
+
+    public void handleVertClick(){
+        panneau.setStyle("-fx-background-color: green");
+        nbFois.set(++nbVert);
+        texteDuBas.setText("Le vert est une jolie couleur !");
+    }
+
+    public void handleRougeClick(){
+        panneau.setStyle("-fx-background-color: red");
+        nbFois.set(++nbRouge);
+
+        texteDuBas.setText("Le rouge est une jolie couleur !");
+    }
+
+    public void handleBleuClick(){
+        panneau.setStyle("-fx-background-color: blue");
+        nbFois.set(++nbBleu);
+        texteDuBas.setText("Le bleu est une jolie couleur !");
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -57,7 +84,12 @@ public class Palette extends Application {
         rouge = new Button("Rouge");
         bleu = new Button("Bleu");
 
-        /* VOTRE CODE ICI */
+       texteDuHaut.textProperty().bind(message.concat("Choisi ").concat(nbFois.asString().concat("fois")));
+
+        this.vert.setOnAction(actionEvent -> handleVertClick());
+        this.bleu.setOnAction(actionEvent -> handleBleuClick());
+        this.rouge.setOnAction(actionEvent -> handleRougeClick());
+
 
         boutons.getChildren().addAll(vert, rouge, bleu);
 

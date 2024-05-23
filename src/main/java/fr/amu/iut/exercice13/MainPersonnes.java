@@ -1,5 +1,6 @@
-package fr.amu.iut.exercice3;
+package fr.amu.iut.exercice13;
 
+import fr.amu.iut.exercice3.Personne;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
