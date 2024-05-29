@@ -1,5 +1,6 @@
-package fr.amu.iut.exercice4;
+package fr.amu.iut.exercice14;
 
+import fr.amu.iut.exercice14.Personne;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
